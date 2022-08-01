@@ -14,5 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return "Hello, Laravel!"; //view('welcome');
+});
+
+Route::get('/about', function(){
+    $category = request('category');
+
+    if(isset($category)){
+
+        return "All information about " . strip_tags($category);
+    }
+
+    return "All information about ME" ;
 });
