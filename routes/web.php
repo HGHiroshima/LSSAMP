@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,17 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return "Hello, Laravel!"; //view('welcome');
-});
+Route::get('/', [PagesController::class , 'index']);
 
-Route::get('/about', function(){
-    $category = request('category');
-
-    if(isset($category)){
-
-        return "All information about " . strip_tags($category);
-    }
-
-    return "All information about ME" ;
-});
+Route::get('/about', [PagesController::class , 'about']);
