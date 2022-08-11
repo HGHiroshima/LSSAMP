@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\PagesController;
+use App\Models\Listing;
+use Faker\Provider\Lorem;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +17,27 @@ use App\Http\Controllers\PagesController;
 |
 */
 
-Route::get('/', [PagesController::class , 'index']);
+//All Listings
+Route::get('/', function(){
+    return view('listing',[
+        'heading' => 'Latest listing',
+        'listings' => Listing::all()
+    ]);
+});
+
+//Singe listing
+Route::get('/list/{id}', function($id){
+    return view ('list',[
+        'listings' => Listing::find($id)
+    ]);
+});
 
 Route::get('/about', [PagesController::class , 'about']);
+
+// Route::get('/search', [PagesController::class, 'search'])->name('all');
+// Route::get('/search', function($heading){
+//         return view ('pages.search', [
+//             $heading => Listings::class
+//         ]);
+//     }
+// );

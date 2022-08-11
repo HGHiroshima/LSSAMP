@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Listings;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -12,5 +12,11 @@ class PagesController extends Controller
 
     public function about(){
         return view('pages.about');
+    }
+
+    public function search($heading){
+        return view ('pages.search', [
+            $heading => Listings::class, 'all'
+        ]);
     }
 }
