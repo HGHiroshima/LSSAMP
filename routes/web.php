@@ -17,8 +17,11 @@ use Faker\Provider\Lorem;
 |
 */
 
+//index
+Route::get('/', [PagesController::class , 'index']);
+
 //All Listings
-Route::get('/', function(){
+Route::get('/listing', function(){
     return view('listing',[
         'heading' => 'Latest listing',
         'listings' => Listing::all()
@@ -32,6 +35,7 @@ Route::get('/list/{id}', function($id){
     ]);
 });
 
+//about page
 Route::get('/about', [PagesController::class , 'about']);
 
 // Route::get('/search', [PagesController::class, 'search'])->name('all');
